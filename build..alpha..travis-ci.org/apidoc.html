@@ -1,0 +1,1104 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/krakenjs/levee"
+
+    >levee (v1.2.1)</a>
+</h1>
+<h4>A circuitbreaker implementation for Node.js</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.levee">module levee</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker">
+            function <span class="apidocSignatureSpan">levee.</span>Breaker
+            <span class="apidocSignatureSpan">(impl, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats">
+            function <span class="apidocSignatureSpan">levee.</span>Stats
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.createBreaker">
+            function <span class="apidocSignatureSpan">levee.</span>createBreaker
+            <span class="apidocSignatureSpan">(impl, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.createStats">
+            function <span class="apidocSignatureSpan">levee.</span>createStats
+            <span class="apidocSignatureSpan">(command)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">levee.</span>Breaker.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">levee.</span>Stats.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">levee.</span>zalgo</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.levee.Breaker">module levee.Breaker</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.Breaker">
+            function <span class="apidocSignatureSpan">levee.</span>Breaker
+            <span class="apidocSignatureSpan">(impl, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.super_">
+            function <span class="apidocSignatureSpan">levee.Breaker.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">levee.Breaker.</span>State</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.levee.Breaker.prototype">module levee.Breaker.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype._onFailure">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_onFailure
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype._run">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_run
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype._setState">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_setState
+            <span class="apidocSignatureSpan">(state)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype._startTimer">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_startTimer
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype.close">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>close
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype.halfOpen">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>halfOpen
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype.isClosed">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>isClosed
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype.isHalfOpen">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>isHalfOpen
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype.isOpen">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>isOpen
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype.open">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>open
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Breaker.prototype.run">
+            function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>run
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.levee.Stats">module levee.Stats</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.Stats">
+            function <span class="apidocSignatureSpan">levee.</span>Stats
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.levee.Stats.prototype">module levee.Stats.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.prototype.decrement">
+            function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>decrement
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.prototype.increment">
+            function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>increment
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.prototype.reset">
+            function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>reset
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.prototype.resetCounts">
+            function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>resetCounts
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.prototype.resetSamples">
+            function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>resetSamples
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.prototype.sample">
+            function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>sample
+            <span class="apidocSignatureSpan">(name, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.Stats.prototype.snapshot">
+            function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>snapshot
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.levee.zalgo">module levee.zalgo</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.levee.zalgo.contain">
+            function <span class="apidocSignatureSpan">levee.zalgo.</span>contain
+            <span class="apidocSignatureSpan">(fn, context)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.levee" id="apidoc.module.levee">module levee</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker" id="apidoc.element.levee.Breaker">
+        function <span class="apidocSignatureSpan">levee.</span>Breaker
+        <span class="apidocSignatureSpan">(impl, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Breaker(impl, options) {
+    Events.EventEmitter.call(this);
+
+    Assert.equal(typeof impl, &#x27;object&#x27;, &#x27;The command implementation must be an object.&#x27;);
+    Assert.equal(typeof impl.execute, &#x27;function&#x27;, &#x27;The command implementation must have a method named `execute`.&#x27;);
+
+    this.settings = Hoek.applyToDefaults(Defaults.Breaker, options || {});
+    this.fallback = undefined;
+
+    this._impl = impl;
+    this._state = Breaker.State.CLOSE;
+    this._numFailures = 0;
+    this._pendingClose = false;
+    this._resetTimer = undefined;
+
+    this.on(&#x27;open&#x27;, this._startTimer);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+`function (context, callback)` where:
+- `context` - Any context needed to execute the desired behavior.
+- `callback` - A callback function with the signature `function (err, [arg1, arg2, ...])`
+
+```javascript
+var Levee = require(&#x27;levee&#x27;);
+
+var breaker = new Levee.<span class="apidocCodeKeywordSpan">Breaker</span>({ execute: fn }, options);
+```
+
+### createBreaker(command [, options])
+An alternative method for creating Breaker instances with the following arguments:
+- `command` - either function or an object with a property named `execute` with value being a function using the signature:
+`function (context, callback)` where:
+- `context` - Any context needed to execute the desired behavior.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats" id="apidoc.element.levee.Stats">
+        function <span class="apidocSignatureSpan">levee.</span>Stats
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Stats() {
+    this._counts = Object.create(null);
+    this._samples = Object.create(null);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+### new Stats(breaker)
+Create a new Stats instance with the following argument:
+- `breaker` - a Breaker instance
+
+```javascript
+var Levee = require(&#x27;levee&#x27;);
+
+var breaker = new Levee.<span class="apidocCodeKeywordSpan">Stats</span>(breaker);
+```
+
+### createStats(breaker)
+An alternative method for creating a new Stats instance with the following argument:
+- `breaker` - a Breaker instance
+
+```javascript
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.createBreaker" id="apidoc.element.levee.createBreaker">
+        function <span class="apidocSignatureSpan">levee.</span>createBreaker
+        <span class="apidocSignatureSpan">(impl, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createBreaker(impl, options) {
+    if (typeof impl === &#x27;function&#x27;) {
+        impl = { execute: impl };
+    }
+
+    return new Breaker(impl, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+options = {
+    maxFailures: 5,
+    timeout: 60000,
+    resetTimeout: 30000
+};
+
+circuit = Levee.<span class="apidocCodeKeywordSpan">createBreaker</span>(Wreck.get, options);
+circuit.run(&#x27;http://www.google.com&#x27;, function (err, req, payload) {
+    // If the service fails or timeouts occur 5 consecutive times,
+    // the breaker opens, fast failing subsequent requests.
+    console.log(err || payload);
+});
+
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.createStats" id="apidoc.element.levee.createStats">
+        function <span class="apidocSignatureSpan">levee.</span>createStats
+        <span class="apidocSignatureSpan">(command)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function createStats(command) {
+    var stats;
+
+    Assert.ok(command instanceof Breaker, &#x27;Stats can only be created for Breaker instances.&#x27;);
+
+    stats = new Stats();
+
+    command.on(&#x27;execute&#x27;, stats.increment.bind(stats, &#x27;executions&#x27;));
+    command.on(&#x27;reject&#x27;,  stats.increment.bind(stats, &#x27;rejections&#x27;));
+    command.on(&#x27;success&#x27;, stats.increment.bind(stats, &#x27;successes&#x27;));
+    command.on(&#x27;failure&#x27;, stats.increment.bind(stats, &#x27;failures&#x27;));
+    command.on(&#x27;timeout&#x27;, stats.increment.bind(stats, &#x27;timeouts&#x27;));
+    command.on(&#x27;duration&#x27;, stats.sample.bind(stats, &#x27;duration&#x27;));
+
+    return stats;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+circuit.run(&#x27;http://www.google.com&#x27;, function (err, req, payload) {
+    // If the service fails or timeouts occur 5 consecutive times,
+    // the breaker opens, fast failing subsequent requests.
+    console.log(err || payload);
+});
+
+var stats, fbStats;
+stats = Levee.<span class="apidocCodeKeywordSpan">createStats</span>(circuit);
+fbStats = Levee.createStats(circuit.fallback);
+
+// Print stats every 5 seconds.
+setInterval(function () {
+    console.log(stats.snapshot());
+    console.log(fbStats.snapshot());
+}, 5000);
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.levee.Breaker" id="apidoc.module.levee.Breaker">module levee.Breaker</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.Breaker" id="apidoc.element.levee.Breaker.Breaker">
+        function <span class="apidocSignatureSpan">levee.</span>Breaker
+        <span class="apidocSignatureSpan">(impl, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Breaker(impl, options) {
+    Events.EventEmitter.call(this);
+
+    Assert.equal(typeof impl, &#x27;object&#x27;, &#x27;The command implementation must be an object.&#x27;);
+    Assert.equal(typeof impl.execute, &#x27;function&#x27;, &#x27;The command implementation must have a method named `execute`.&#x27;);
+
+    this.settings = Hoek.applyToDefaults(Defaults.Breaker, options || {});
+    this.fallback = undefined;
+
+    this._impl = impl;
+    this._state = Breaker.State.CLOSE;
+    this._numFailures = 0;
+    this._pendingClose = false;
+    this._resetTimer = undefined;
+
+    this.on(&#x27;open&#x27;, this._startTimer);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+`function (context, callback)` where:
+- `context` - Any context needed to execute the desired behavior.
+- `callback` - A callback function with the signature `function (err, [arg1, arg2, ...])`
+
+```javascript
+var Levee = require(&#x27;levee&#x27;);
+
+var breaker = new Levee.<span class="apidocCodeKeywordSpan">Breaker</span>({ execute: fn }, options);
+```
+
+### createBreaker(command [, options])
+An alternative method for creating Breaker instances with the following arguments:
+- `command` - either function or an object with a property named `execute` with value being a function using the signature:
+`function (context, callback)` where:
+- `context` - Any context needed to execute the desired behavior.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.super_" id="apidoc.element.levee.Breaker.super_">
+        function <span class="apidocSignatureSpan">levee.Breaker.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function EventEmitter() {
+  EventEmitter.init.call(this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.levee.Breaker.prototype" id="apidoc.module.levee.Breaker.prototype">module levee.Breaker.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype._onFailure" id="apidoc.element.levee.Breaker.prototype._onFailure">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_onFailure
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function _onFailure() {
+    this._numFailures += 1;
+    if (this.isHalfOpen() || this._numFailures &#x3e;= this.settings.maxFailures) {
+        this.open();
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype._run" id="apidoc.element.levee.Breaker.prototype._run">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_run
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function _run() {
+    var args, callback, self, start, timer, execute;
+
+    this.emit(&#x27;execute&#x27;);
+
+    args = Array.prototype.slice.call(arguments);
+    callback = args.pop();
+
+    if (this.isOpen() || this._pendingClose) {
+        this.emit(&#x27;reject&#x27;);
+        callback(new Error(&#x27;Command not available.&#x27;));
+        return;
+    }
+
+    if (this.isHalfOpen()) {
+        // Flip the flag to disallow additional calls at this time.
+        // It doesn&#x27;t matter if any in-flight calls come back before
+        // this call completes because if the in-flight ones timeout
+        // or fail, the command still isn&#x27;t healthy so we flip back
+        // to `open`. If they succeed we optimistically flip back to
+        // `closed` and this call can continue as normal.
+        this._pendingClose = true;
+    }
+
+    self = this;
+    start = Date.now();
+
+    timer = setTimeout(function ontimeout() {
+        var error = new Error(&#x27;Command timeout.&#x27;);
+        error.name = &#x27;commandTimeout&#x27;;
+        error.code = &#x27;ETIMEDOUT&#x27;;
+        timer = undefined;
+        self._pendingClose = false;
+        self.emit(&#x27;timeout&#x27;);
+        self._onFailure();
+        callback(error);
+    }, this.settings.timeout);
+
+    timer.unref();
+
+    args[args.length] = function onreponse(err/*, ...data*/) {
+        if (!timer) { return; }
+
+        clearTimeout(timer);
+        timer = undefined;
+
+        self._pendingClose = false;
+        self.emit(&#x27;duration&#x27;, Date.now() - start);
+
+        if (err &#x26;&#x26; self.settings.isFailure(err)) {
+            self.emit(&#x27;failure&#x27;, err);
+            self._onFailure();
+        } else {
+            self.emit(&#x27;success&#x27;);
+            self.close();
+        }
+
+        callback.apply(null, arguments);
+    };
+
+
+    execute = Zalgo.contain(this._impl.execute, this._impl);
+    execute.apply(null, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype._setState" id="apidoc.element.levee.Breaker.prototype._setState">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_setState
+        <span class="apidocSignatureSpan">(state)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function _setState(state) {
+    if (state in Breaker.State &#x26;&#x26; this._state !== state) {
+        this._state = state;
+        this.emit(state.toLowerCase());
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype._startTimer" id="apidoc.element.levee.Breaker.prototype._startTimer">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>_startTimer
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function _startTimer() {
+    this._resetTimer = setTimeout(this.halfOpen.bind(this), this.settings.resetTimeout);
+    this._resetTimer.unref();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype.close" id="apidoc.element.levee.Breaker.prototype.close">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>close
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function close() {
+    this._numFailures = 0;
+    this._setState(Breaker.State.CLOSE);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype.halfOpen" id="apidoc.element.levee.Breaker.prototype.halfOpen">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>halfOpen
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function halfOpen() {
+    this._setState(Breaker.State.HALF_OPEN);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype.isClosed" id="apidoc.element.levee.Breaker.prototype.isClosed">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>isClosed
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isClosed() {
+    return this._state === Breaker.State.CLOSE;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype.isHalfOpen" id="apidoc.element.levee.Breaker.prototype.isHalfOpen">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>isHalfOpen
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isHalfOpen() {
+    return this._state === Breaker.State.HALF_OPEN;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype.isOpen" id="apidoc.element.levee.Breaker.prototype.isOpen">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>isOpen
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isOpen() {
+    return this._state === Breaker.State.OPEN;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype.open" id="apidoc.element.levee.Breaker.prototype.open">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>open
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function open() {
+    this._setState(Breaker.State.OPEN);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Breaker.prototype.run" id="apidoc.element.levee.Breaker.prototype.run">
+        function <span class="apidocSignatureSpan">levee.Breaker.prototype.</span>run
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function run() {
+    var args, self, fallback, orig;
+
+    args = Array.prototype.slice.call(arguments);
+    self = this;
+    fallback = this.fallback;
+
+    if (fallback instanceof Breaker) {
+        orig = args.slice();
+        args[args.length - 1] = function wrapper(err/*, ...data*/) {
+            var callback;
+
+            if (err &#x26;&#x26; self.isOpen()) {
+                fallback.run.apply(fallback, orig);
+                return;
+            }
+
+            callback = orig.pop();
+            callback.apply(null, arguments);
+        };
+    }
+
+    this._run.apply(this, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+options = {
+    maxFailures: 5,
+    timeout: 60000,
+    resetTimeout: 30000
+};
+
+circuit = Levee.createBreaker(Wreck.get, options);
+circuit.<span class="apidocCodeKeywordSpan">run</span>(&#x27;http://www.google.com&#x27;, function (err, req, payload) {
+    // If the service fails or timeouts occur 5 consecutive times,
+    // the breaker opens, fast failing subsequent requests.
+    console.log(err || payload);
+});
+
+```
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.levee.Stats" id="apidoc.module.levee.Stats">module levee.Stats</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.Stats" id="apidoc.element.levee.Stats.Stats">
+        function <span class="apidocSignatureSpan">levee.</span>Stats
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Stats() {
+    this._counts = Object.create(null);
+    this._samples = Object.create(null);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+### new Stats(breaker)
+Create a new Stats instance with the following argument:
+- `breaker` - a Breaker instance
+
+```javascript
+var Levee = require(&#x27;levee&#x27;);
+
+var breaker = new Levee.<span class="apidocCodeKeywordSpan">Stats</span>(breaker);
+```
+
+### createStats(breaker)
+An alternative method for creating a new Stats instance with the following argument:
+- `breaker` - a Breaker instance
+
+```javascript
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.levee.Stats.prototype" id="apidoc.module.levee.Stats.prototype">module levee.Stats.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.prototype.decrement" id="apidoc.element.levee.Stats.prototype.decrement">
+        function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>decrement
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function decrement(name) {
+    if (name in this._counts) {
+        this._counts[name] -= 1;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.prototype.increment" id="apidoc.element.levee.Stats.prototype.increment">
+        function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>increment
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function increment(name) {
+    if (!(name in this._counts)) {
+        this.resetCounts(name);
+    }
+    this._counts[name] += 1;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.prototype.reset" id="apidoc.element.levee.Stats.prototype.reset">
+        function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>reset
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function reset() {
+    this.resetCounts();
+    this.resetSamples();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.prototype.resetCounts" id="apidoc.element.levee.Stats.prototype.resetCounts">
+        function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>resetCounts
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function resetCounts(name) {
+    if (!name) {
+        Object.keys(this._counts).forEach(resetCounts, this);
+        return;
+    }
+    this._counts[name] = 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.prototype.resetSamples" id="apidoc.element.levee.Stats.prototype.resetSamples">
+        function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>resetSamples
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function resetSamples(name) {
+    if (!name) {
+        Object.keys(this._samples).forEach(resetSamples, this);
+        return;
+    }
+    this._samples[name] = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.prototype.sample" id="apidoc.element.levee.Stats.prototype.sample">
+        function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>sample
+        <span class="apidocSignatureSpan">(name, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function sample(name, data) {
+    if (!(name in this._samples)) {
+        this.resetSamples(name);
+    }
+    this._samples[name].push(data);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.levee.Stats.prototype.snapshot" id="apidoc.element.levee.Stats.prototype.snapshot">
+        function <span class="apidocSignatureSpan">levee.Stats.prototype.</span>snapshot
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function snapshot() {
+    var counts, samples;
+
+    counts = Hoek.clone(this._counts);
+    samples = this._samples;
+
+    return {
+        counts: counts,
+        samples: Object.keys(samples).reduce(function (obj, prop) {
+            var data;
+
+            data = samples[prop];
+
+            obj[prop] = {
+                average: avg(data),
+                count: data.length
+            };
+
+            return obj;
+        }, {})
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var stats, fbStats;
+stats = Levee.createStats(circuit);
+fbStats = Levee.createStats(circuit.fallback);
+
+// Print stats every 5 seconds.
+setInterval(function () {
+    console.log(stats.<span class="apidocCodeKeywordSpan">snapshot</span>());
+    console.log(fbStats.snapshot());
+}, 5000);
+```
+
+
+
+## API
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.levee.zalgo" id="apidoc.module.levee.zalgo">module levee.zalgo</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.levee.zalgo.contain" id="apidoc.element.levee.zalgo.contain">
+        function <span class="apidocSignatureSpan">levee.zalgo.</span>contain
+        <span class="apidocSignatureSpan">(fn, context)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function contain(fn, context) {
+    return function zalgo() {
+        var callback, sync;
+
+        function __container__() {
+            var args;
+
+            if (sync) {
+                args = arguments;
+                process.nextTick(function () {
+                    callback.apply(null, args);
+                });
+            } else {
+                callback.apply(null, arguments);
+            }
+        }
+
+        // Defend against re-wrapping callbacks
+        callback = arguments[arguments.length - 1];
+        if (callback.name !== __container__.name) {
+            arguments[arguments.length - 1] = __container__;
+        }
+
+        sync = true;
+        fn.apply(context || this, arguments);
+        sync = false;
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
